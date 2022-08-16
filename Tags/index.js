@@ -11,10 +11,18 @@ class Tags extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tags: props.initialTags,
+      tags: props.initialTags || props.tags,
       text: props.initialText
     };
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.tags !== nextProps.tags) {
+      this.setState({
+        tags: nextProps.tags
+      });
+     }
+  }
 
   showLastTag = () => {
     this.setState(state =>
